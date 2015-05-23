@@ -23,7 +23,11 @@
             background: rgb(90, 90, 90);
         }
 
-        .attachment-form button[type=submit] {
+        .attachment-form input:disabled, .attachment-form textarea:disabled {
+            opacity: 0.5;
+        }
+
+        .attachment-form button {
             padding: 3px 10px;
             color: #fff;
             border-radius: 4px;
@@ -32,9 +36,10 @@
             background: #759D2A;
             border: none;
             font-weight: bold;
+            margin-right: 10px;
         }
 
-        .attachment-form button[type=submit]:hover {
+        .attachment-form button:hover {
             cursor: pointer;
             color: #065109;
         }
