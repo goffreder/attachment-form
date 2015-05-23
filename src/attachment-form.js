@@ -92,6 +92,31 @@ var TimeField = React.createClass({
     }
 });
 
+var CheckBoxField = React.createClass({
+    displayName: 'CheckBoxField',
+    render: function() {
+        return (
+            React.createElement(
+                'div',
+                { className: "attachment-field" },
+                React.createElement(
+                    'label',
+                    { htmlFor: this.props.name },
+                    this.props.label
+                ),
+                React.createElement(
+                    'input',
+                    {
+                        id: this.props.name,
+                        type: 'checkbox',
+                        name: this.props.label
+                    }
+                )
+            )
+        );
+    }
+});
+
 var AttachmentForm = React.createClass({
     displayName: "AttachmentForm",
     render: function() {
@@ -114,6 +139,9 @@ var AttachmentForm = React.createClass({
                     break;
                 case 'time':
                     input = React.createElement(TimeField, props);
+                    break;
+                case 'checkbox':
+                    input = React.createElement(CheckBoxField, props);
                     break;
             }
 
@@ -158,6 +186,10 @@ var template = {
         name: 'paperino',
         label: 'Paperino',
         type: 'time'
+    }, {
+        name: 'gastone',
+        label: 'Gastone',
+        type: 'checkbox'
     }]
 };
 
