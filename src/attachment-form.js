@@ -2,21 +2,144 @@ var TextField = React.createClass({
     displayName: 'TextField',
     render: function() {
         return (
+            React.createElement(
+                'div',
+                { className: "attachment-field" },
+                React.createElement(
+                    'label',
+                    { htmlFor: this.props.name },
+                    this.props.label
+                ),
+                React.createElement(
+                    'input',
+                    {
+                        id: this.props.name,
+                        type: 'text',
+                        name: this.props.label
+                    }
+                )
+            )
+        );
+    }
+});
+
+var TextArea = React.createClass({
+    displayName: 'TextArea',
+    render: function() {
+        return (
+            React.createElement(
+                'div',
+                { className: "attachment-field" },
+                React.createElement(
+                    'label',
+                    { htmlFor: this.props.name },
+                    this.props.label
+                ),
+                React.createElement(
+                    'textarea',
+                    {
+                        id: this.props.name,
+                        name: this.props.label
+                    }
+                )
+            )
+        );
+    }
+});
+
+var DateField = React.createClass({
+    displayName: 'DateField',
+    render: function() {
+        return (
             React.createElement('div', {
                 className: "attachment-field"
-            }, [
+            },
                 React.createElement('label', {
                     htmlFor: this.props.name,
                 }, this.props.label),
                 React.createElement('input', {
                     id: this.props.name,
-                    type: 'text',
+                    type: 'date',
                     name: this.props.label
                 })
-            ])
+            )
         );
     }
 });
+
+var TimeField = React.createClass({
+    displayName: 'TimeField',
+    render: function() {
+        return (
+            React.createElement(
+                'div',
+                { className: "attachment-field" },
+                React.createElement(
+                    'label',
+                    { htmlFor: this.props.name },
+                    this.props.label
+                ),
+                React.createElement(
+                    'input',
+                    {
+                        id: this.props.name,
+                        type: 'time',
+                        name: this.props.label
+                    }
+                )
+            )
+        );
+    }
+});
+
+var AttachmentForm = React.createClass({
+    displayName: "AttachmentForm",
+    render: function() {
+        var fields = this.props.template.fields.map(function(field) {
+            var input, props = {
+                key: field.name,
+                name: field.name,
+                label: field.label,
+            };
+
+            switch(field.type) {
+                case 'text':
+                    input = React.createElement(TextField, props);
+                    break;
+                case 'textarea':
+                    input = React.createElement(TextArea, props);
+                    break;
+                case 'date':
+                    input = React.createElement(DateField, props);
+                    break;
+                case 'time':
+                    input = React.createElement(TimeField, props);
+                    break;
+            }
+
+            return input;
+        });
+
+        return (
+            React.createElement(
+                'div',
+                { className: 'attachment-form' },
+                React.createElement(
+                    'form',
+                    null,
+                    fields,
+                    React.createElement(
+                        'button',
+                        { type: 'submit' },
+                        'Submit'
+                    )
+                )
+            )
+        );
+    }
+});
+
+
 
 var template = {
     fields : [{
@@ -38,75 +161,10 @@ var template = {
     }]
 };
 
-var AttachmentForm = React.createClass({
-    displayName: "AttachmentForm",
-    render: function() {
-        var fields = this.props.template.fields.map(function(field) {
-            var input;
-
-            switch(field.type) {
-                case 'text':
-                    input = React.createElement(TextField, {
-                        key: field.name,
-                        name: field.name,
-                        label: field.label,
-                    });
-                    break;
-            }
-        });
-
-        return (
-            React.createElement('div', {
-                className: 'attachment-form'
-            }, React.createElement('form', {},
-                fields.concat([
-                    React.createElement('button', {
-                        type: 'submit'
-                    }, 'Submit')
-                ]))
-            )
-        );
-    }
-});
-
-
-// class AttachmentForm extends React.Component {
-//     render() {
-//         var fields = this.props.template.fields.map((field) => {
-//             var input;
-//
-//             switch(field.type) {
-//                 case 'text':
-//                     input = <TextField key={field.name} name={field.name} label={field.label} />;
-//                     break;
-//                 // case 'textarea':
-//                 //     input = <TextArea key={field.name} name={field.name} label={field.label} />;
-//                 //     break;
-//                 // case 'date':
-//                 //     input = <DateField key={field.name} name={field.name} label={field.label} />;
-//                 //     break;
-//                 // case 'time':
-//                 //     input = <TimeField key={field.name} name={field.name} label={field.label} />;
-//                 //     break;
-//             }
-//
-//             return input;
-//         });
-//
-//         return (
-//             <div className="attachment-form">
-//                 <form>
-//                     {fields}
-//                     <button type="submit">Submit</button>
-//                 </form>
-//             </div>
-//         );
-//     }
-// }
-
 React.render(
-    React.createElement(AttachmentForm, {
-        template: template
-    }),
+    React.createElement(
+        AttachmentForm,
+        { template: template }
+    ),
     document.getElementById("app")
 );
