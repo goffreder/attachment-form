@@ -63,10 +63,14 @@ var DateField = React.createClass({
     displayName: 'DateField',
     propTypes: {
         name: React.PropTypes.string.isRequired,
-        label: React.PropTypes.string.isRequired,
-        disabled: React.PropTypes.bool.isRequired
+        label: React.PropTypes.string.isRequired
+    },
+    shouldComponentUpdate: function(nextProps) {
+        return nextProps.name !== this.props.name && nextProps.label !== this.props.label;
     },
     render: function() {
+        console.log("rendering DateField", this.props);
+
         return (
             React.createElement(
                 'div',
@@ -81,8 +85,7 @@ var DateField = React.createClass({
                     {
                         id: this.props.name,
                         type: 'date',
-                        name: this.props.label,
-                        disabled: this.props.disabled
+                        name: this.props.label
                     }
                 )
             )
@@ -94,10 +97,14 @@ var TimeField = React.createClass({
     displayName: 'TimeField',
     propTypes: {
         name: React.PropTypes.string.isRequired,
-        label: React.PropTypes.string.isRequired,
-        disabled: React.PropTypes.bool.isRequired
+        label: React.PropTypes.string.isRequired
+    },
+    shouldComponentUpdate: function(nextProps) {
+        return nextProps.name !== this.props.name && nextProps.label !== this.props.label;
     },
     render: function() {
+        console.log("rendering TimeField", this.props);
+
         return (
             React.createElement(
                 'div',
@@ -112,8 +119,7 @@ var TimeField = React.createClass({
                     {
                         id: this.props.name,
                         type: 'time',
-                        name: this.props.label,
-                        disabled: this.props.disabled
+                        name: this.props.label
                     }
                 )
             )
