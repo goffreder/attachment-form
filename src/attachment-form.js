@@ -1,5 +1,9 @@
 var TextField = React.createClass({
     displayName: 'TextField',
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+        label: React.PropTypes.string.isRequired
+    },
     render: function() {
         return (
             React.createElement(
@@ -25,6 +29,10 @@ var TextField = React.createClass({
 
 var TextArea = React.createClass({
     displayName: 'TextArea',
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+        label: React.PropTypes.string.isRequired
+    },
     render: function() {
         return (
             React.createElement(
@@ -49,6 +57,10 @@ var TextArea = React.createClass({
 
 var DateField = React.createClass({
     displayName: 'DateField',
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+        label: React.PropTypes.string.isRequired
+    },
     render: function() {
         return (
             React.createElement('div', {
@@ -69,6 +81,10 @@ var DateField = React.createClass({
 
 var TimeField = React.createClass({
     displayName: 'TimeField',
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+        label: React.PropTypes.string.isRequired
+    },
     render: function() {
         return (
             React.createElement(
@@ -94,6 +110,10 @@ var TimeField = React.createClass({
 
 var CheckBoxField = React.createClass({
     displayName: 'CheckBoxField',
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+        label: React.PropTypes.string.isRequired
+    },
     render: function() {
         return (
             React.createElement(
@@ -119,6 +139,21 @@ var CheckBoxField = React.createClass({
 
 var AttachmentForm = React.createClass({
     displayName: "AttachmentForm",
+    propTypes: {
+        template: React.PropTypes.shape({
+            fields: React.PropTypes.arrayOf(React.PropTypes.shape({
+                name: React.PropTypes.string.isRequired,
+                label: React.PropTypes.string.isRequired,
+                type: React.PropTypes.oneOf([
+                    'text',
+                    'textarea',
+                    'date',
+                    'time',
+                    'checkbox'
+                ]).isRequired
+            })).isRequired
+        }).isRequired
+    },
     render: function() {
         var fields = this.props.template.fields.map(function(field) {
             var input, props = {
