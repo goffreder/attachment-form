@@ -9,21 +9,21 @@
             font-family: Arial,Helvetica,sans-serif;
             color: #fff;
         }
-
         .attachment-form {
             width: 260px;
             background: #323634;
             border-radius: 4px;
             padding: 10px;
         }
-
         .attachment-form input, .attachment-form textarea {
             float: right;
             color: #fff;
             background: rgb(90, 90, 90);
         }
-
-        .attachment-form button[type=submit] {
+        .attachment-form input:disabled, .attachment-form textarea:disabled {
+            opacity: 0.5;
+        }
+        .attachment-form button {
             padding: 3px 10px;
             color: #fff;
             border-radius: 4px;
@@ -32,13 +32,12 @@
             background: #759D2A;
             border: none;
             font-weight: bold;
+            margin-right: 10px;
         }
-
-        .attachment-form button[type=submit]:hover {
+        .attachment-form button:hover {
             cursor: pointer;
             color: #065109;
         }
-
         .attachment-field {
             margin-top: 10px;
             height: 40px;
