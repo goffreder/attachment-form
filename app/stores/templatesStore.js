@@ -1,6 +1,6 @@
 import appDispatcher from '../dispatcher/appDispatcher';
 import { EventEmitter } from 'events';
-import { ServerActionTypes } from '../constants/constants';
+import { ServerActionTypes, UserActionTypes } from '../constants/constants';
 import assign from 'react/lib/Object.assign';
 
 const CHANGE_EVENT = 'CHANGE';
@@ -45,6 +45,15 @@ templatesStore.dispatchToken = appDispatcher.register((payload) => {
                 templates: action.templates
             });
             break;
+
+        case UserActionTypes.USER_SELECTED_TEMPLATE:
+            updateState({
+                selectedTemplate: __state.templates.filter((template) => {
+                    return template.name === action.templateId;
+                }).pop()
+            });
+            break;
+
         default:
             console.log(action);
             break;

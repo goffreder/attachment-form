@@ -1,16 +1,20 @@
+import userActions from '../actions/userActions';
+
 export default class TemplateList extends React.Component {
     render() {
         var templateLinks = this.props.templates.map((template) => {
             return (
                 <li key={template.name}>
-                    <a href="#">{template.label}</a>
+                    <a href="#" onClick={() => {
+                        userActions.userSelectTemplate(template.name);
+                    }}>{template.label}</a>
                 </li>
             );
         });
 
         return (
             <div>
-                Templates
+                <h3>Templates</h3>
                 <ul>
                     {templateLinks}
                 </ul>

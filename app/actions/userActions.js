@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { UserActionTypes } from '../constants/constants';
 import serverActions from './serverActions';
 import appDispatcher from '../dispatcher/appDispatcher';
 
@@ -13,6 +14,13 @@ export default {
             serverActions.serverLoadedTemplates(res.data);
         }).catch((res) => {
             console.log(res);
+        });
+    },
+
+    userSelectTemplate(templateId) {
+        appDispatcher.handleUserAction({
+            type: UserActionTypes.USER_SELECTED_TEMPLATE,
+            templateId
         });
     }
 };

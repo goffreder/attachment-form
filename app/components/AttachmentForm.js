@@ -1,8 +1,10 @@
 import TextField from './fields/TextField';
 import TextArea from './fields/TextArea';
 import DateField from './fields/DateField';
+import DateTimeField from './fields/DateTimeField';
 import TimeField from './fields/TimeField';
 import CheckBoxField from './fields/CheckBoxField';
+import NumberField from './fields/NumberField';
 
 export default class AttachmentForm extends React.Component {
     constructor(props) {
@@ -54,6 +56,16 @@ export default class AttachmentForm extends React.Component {
                         />
                     );
                     break;
+                case 'datetime':
+                    input = (
+                        <DateTimeField
+                            key={field.name}
+                            name={field.name}
+                            label={field.label}
+                            disabled={this.state.disabled}
+                        />
+                    );
+                    break;
                 case 'time':
                     input = (
                         <TimeField
@@ -74,6 +86,16 @@ export default class AttachmentForm extends React.Component {
                         />
                     );
                     break;
+                case 'number':
+                    input = (
+                        <NumberField
+                            key={field.name}
+                            name={field.name}
+                            label={field.label}
+                            disabled={this.state.disabled}
+                        />
+                    );
+                    break;
             }
 
             return input;
@@ -81,6 +103,7 @@ export default class AttachmentForm extends React.Component {
 
         return (
             <div className="attachment-form">
+                <h3>{this.props.template.label}</h3>
                 <form>
                     {fields}
                     <button type="submit">Submit</button>
@@ -103,8 +126,11 @@ AttachmentForm.propTypes = {
                 'textarea',
                 'date',
                 'time',
-                'checkbox'
+                'checkbox',
+                'number',
+                'datetime'
             ]).isRequired
-        })).isRequired
+        })).isRequired,
+        label: React.PropTypes.string.isRequired
     }).isRequired
 };

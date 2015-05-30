@@ -8,5 +8,9 @@ export default {
 
     ServerActionTypes: keyMirror({
         SERVER_LOAD_TEMPLATES_SUCCESS: null
+    }),
+
+    UserActionTypes: keyMirror({
+        USER_SELECTED_TEMPLATE: null
     })
 };
