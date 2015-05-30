@@ -22,5 +22,9 @@ export default {
             type: UserActionTypes.USER_SELECTED_TEMPLATE,
             templateId
         });
+    },
+
+    userSaveObject(type, data) {
+        console.log(type, data);
     }
 };

@@ -1,3 +1,7 @@
+import serialize from 'form-serialize';
+
+import userActions from '../actions/userActions';
+
 import TextField from './fields/TextField';
 import TextArea from './fields/TextArea';
 import DateField from './fields/DateField';
@@ -13,12 +17,22 @@ export default class AttachmentForm extends React.Component {
         this.state = {
             disabled: false
         };
+
+        this.toggleDisabled = this.toggleDisabled.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     toggleDisabled() {
         this.setState({
             disabled: !this.state.disabled
         });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        var form = document.getElementById(`${this.props.template.name}-form`);
+        userActions.userSaveObject(this.props.template.name, serialize(form, { hash: true }));
     }
 
     render() {
@@ -104,10 +118,10 @@ export default class AttachmentForm extends React.Component {
         return (
             <div className="attachment-form">
                 <h3>{this.props.template.label}</h3>
-                <form>
+                <form id={`${this.props.template.name}-form`} onSubmit={this.handleSubmit}>
                     {fields}
                     <button type="submit">Submit</button>
-                    <button type="button" onClick={this.toggleDisabled.bind(this)}>
+                    <button type="button" onClick={this.toggleDisabled}>
                         {this.state.disabled ? 'Enable' : 'Disable'}
                     </button>
                 </form>
@@ -131,6 +145,7 @@ AttachmentForm.propTypes = {
                 'datetime'
             ]).isRequired
         })).isRequired,
+        name: React.PropTypes.string.isRequired,
         label: React.PropTypes.string.isRequired
     }).isRequired
 };
