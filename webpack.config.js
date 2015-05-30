@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: process.env.NODE_ENV !== 'production' ? 'eval' : null,
+    devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : null,
 
     entry: "./app/App.js",
 

@@ -1,0 +1,66 @@
+{
+  "templates": [
+    {
+      "name": "player",
+      "label": "Giocatore",
+      "fields": [
+        {
+          "name": "nome",
+          "label": "Nome",
+          "type": "text"
+        },
+        {
+          "name": "cognome",
+          "label": "Cognome",
+          "type": "text"
+        },
+        {
+          "name": "data_nascita",
+          "label": "Data di nascita",
+          "type": "date"
+        },
+        {
+          "name": "altezza",
+          "label": "Altezza (cm)",
+          "type": "number"
+        },
+        {
+          "name": "peso",
+          "label": "Peso (kg)",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "match",
+      "label": "Partita",
+      "fields": [
+        {
+          "name": "team_a",
+          "label": "Squadra A",
+          "type": "text"
+        },
+        {
+          "name": "team_b",
+          "label": "Squadra B",
+          "type": "text"
+        },
+        {
+          "name": "score_a",
+          "label": "Punteggio A",
+          "type": "number"
+        },
+        {
+          "name": "score_b",
+          "label": "Punteggio B",
+          "type": "number"
+        },
+        {
+          "name": "data_ora",
+          "label": "Data e orario",
+          "type": "datetime"
+        }
+      ]
+    }
+  ]
+}

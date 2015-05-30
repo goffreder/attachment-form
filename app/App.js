@@ -1,139 +1,48 @@
-import TextField from './components/TextField';
-import TextArea from './components/TextArea';
-import DateField from './components/DateField';
-import TimeField from './components/TimeField';
-import CheckBoxField from './components/CheckBoxField';
+import templatesStore from './stores/templatesStore';
 
-var template = {
-    fields : [{
-        name: 'pippo',
-        label: 'Pippo',
-        type: 'text'
-    }, {
-        name: 'pluto',
-        label: 'Pluto',
-        type: 'textarea'
-    }, {
-        name: 'topolino',
-        label: 'Topolino',
-        type: 'date'
-    }, {
-        name: 'paperino',
-        label: 'Paperino',
-        type: 'time'
-    }, {
-        name: 'gastone',
-        label: 'Gastone',
-        type: 'checkbox'
-    }]
-}
+import userActions from './actions/userActions';
 
-class AttachmentForm extends React.Component {
+import AttachmentForm from './components/AttachmentForm';
+import TemplatesList from './components/TemplatesList';
+
+class Main extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            disabled: false
-        };
+        this.state = templatesStore.getState();
+
+        this.handleStoreChange = this.handleStoreChange.bind(this);
     }
 
-    toggleDisabled() {
-        this.setState({
-            disabled: !this.state.disabled
-        });
+    handleStoreChange() {
+        this.setState(templatesStore.getState());
+    }
+
+    componentDidMount() {
+        templatesStore.addChangeListener(this.handleStoreChange);
+
+        userActions.userLoadTemplates();
+    }
+
+    componentWillUnmount() {
+        templatesStore.removeChangeListener(this.handleStoreChange);
     }
 
     render() {
-        var fields = this.props.template.fields.map((field) => {
-            var input;
-
-            switch(field.type) {
-                case 'text':
-                    input = (
-                        <TextField
-                            key={field.name}
-                            name={field.name}
-                            label={field.label}
-                            disabled={this.state.disabled}
-                        />
-                    );
-                    break;
-                case 'textarea':
-                    input = (
-                        <TextArea
-                            key={field.name}
-                            name={field.name}
-                            label={field.label}
-                            disabled={this.state.disabled}
-                        />
-                    );
-                    break;
-                case 'date':
-                    input = (
-                        <DateField
-                            key={field.name}
-                            name={field.name}
-                            label={field.label}
-                            disabled={this.state.disabled}
-                        />
-                    );
-                    break;
-                case 'time':
-                    input = (
-                        <TimeField
-                            key={field.name}
-                            name={field.name}
-                            label={field.label}
-                            disabled={this.state.disabled}
-                        />
-                    );
-                    break;
-                case 'checkbox':
-                    input = (
-                        <CheckBoxField
-                            key={field.name}
-                            name={field.name}
-                            label={field.label}
-                            disabled={this.state.disabled}
-                        />
-                    );
-                    break;
-            }
-
-            return input;
-        });
+        var templates = this.state.templates || [];
 
         return (
-            <div className="attachment-form">
-                <form>
-                    {fields}
-                    <button type="submit">Submit</button>
-                    <button type="button" onClick={this.toggleDisabled.bind(this)}>
-                        {this.state.disabled ? 'Enable' : 'Disable'}
-                    </button>
-                </form>
+            <div>
+                <div className="left">
+                    <TemplatesList templates={templates}/>
+                </div>
+                <div className="right"></div>
             </div>
         );
     }
 }
 
-AttachmentForm.propTypes = {
-    template: React.PropTypes.shape({
-        fields: React.PropTypes.arrayOf(React.PropTypes.shape({
-            name: React.PropTypes.string.isRequired,
-            label: React.PropTypes.string.isRequired,
-            type: React.PropTypes.oneOf([
-                'text',
-                'textarea',
-                'date',
-                'time',
-                'checkbox'
-            ]).isRequired
-        })).isRequired
-    }).isRequired
-};
-
 React.render(
-    <AttachmentForm template={template} />,
+    <Main />,
     document.getElementById("app")
 );
