@@ -10,6 +10,8 @@ export default {
     userLoadTemplates() {
         var url = `${baseURL}/templates`;
 
+        window.axios = axios;
+
         axios.get(url).then((res) => {
             serverActions.serverLoadedTemplates(res.data);
         }).catch((res) => {
@@ -25,6 +27,12 @@ export default {
     },
 
     userSaveObject(type, data) {
-        console.log(type, data);
+        var url = `${baseURL}/${type}`;
+
+        axios.post(url, data).then((res) => {
+            console.log("then", res);
+        }).catch((res) => {
+            console.log("catch", res);
+        });
     }
 };

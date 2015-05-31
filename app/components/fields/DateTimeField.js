@@ -10,7 +10,7 @@ export default class DateTimeField extends React.Component {
                 <input
                     id={this.props.name}
                     type="datetime-local"
-                    name={this.props.label}
+                    name={this.props.name}
                     disabled={this.props.disabled}
                 />
             </div>

@@ -10,7 +10,7 @@ export default class DateField extends React.Component {
                 <input
                     id={this.props.name}
                     type="date"
-                    name={this.props.label}
+                    name={this.props.name}
                     disabled={this.props.disabled}
                 />
             </div>

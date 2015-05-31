@@ -6,7 +6,7 @@ export default class NumberField extends React.Component {
                 <input
                     id={this.props.name}
                     type="number"
-                    name={this.props.label}
+                    name={this.props.name}
                     disabled={this.props.disabled}
                 />
             </div>

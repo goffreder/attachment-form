@@ -62,5 +62,33 @@
         }
       ]
     }
+  ],
+  "player": [
+    {
+      "nome": "Cristiano",
+      "cognome": "Ronaldo",
+      "data_nascita": "2015-05-30",
+      "altezza": 190,
+      "peso": 87,
+      "id": 1
+    },
+    {
+      "nome": "Cristiano",
+      "cognome": "Ronaldo",
+      "data_nascita": "2015-05-30",
+      "altezza": 190,
+      "peso": 87,
+      "id": 2
+    }
+  ],
+  "match": [
+    {
+      "team_a": "Genoa",
+      "team_b": "Inter",
+      "score_a": 3,
+      "score_b": 2,
+      "data_ora": "2015-05-30T00:58",
+      "id": 1
+    }
   ]
 }
