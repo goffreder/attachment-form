@@ -8,6 +8,7 @@ export default class NumberField extends React.Component {
                     type="number"
                     name={this.props.name}
                     disabled={this.props.disabled}
+                    required={true}
                 />
             </div>
         );

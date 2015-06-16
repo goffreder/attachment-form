@@ -89,6 +89,14 @@
       "score_b": 2,
       "data_ora": "2015-05-30T00:58",
       "id": 1
+    },
+    {
+      "team_a": "milan",
+      "team_b": "genoa",
+      "score_a": 10,
+      "score_b": 2,
+      "data_ora": "2015-06-01T14:52",
+      "id": 2
     }
   ]
 }
