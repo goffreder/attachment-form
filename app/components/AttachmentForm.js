@@ -31,15 +31,15 @@ export default class AttachmentForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        var form = document.getElementById(`${this.props.template.name}-form`);
+        const form = document.getElementById(`${this.props.template.name}-form`);
         userActions.userSaveObject(this.props.template.name, serialize(form, { hash: true }));
     }
 
     render() {
-        var fields = this.props.template.fields.map((field) => {
-            var input;
+        const fields = this.props.template.fields.map((field) => {
+            let input;
 
-            switch(field.type) {
+            switch (field.type) {
                 case 'text':
                     input = (
                         <TextField
@@ -109,6 +109,8 @@ export default class AttachmentForm extends React.Component {
                             disabled={this.state.disabled}
                         />
                     );
+                    break;
+                default :
                     break;
             }
 

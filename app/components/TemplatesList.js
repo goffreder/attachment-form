@@ -2,7 +2,7 @@ import userActions from '../actions/userActions';
 
 export default class TemplateList extends React.Component {
     render() {
-        var templateLinks = this.props.templates.map((template) => {
+        const templateLinks = this.props.templates.map((template) => {
             return (
                 <li key={template.name}>
                     <a href="#" onClick={() => {

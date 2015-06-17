@@ -14,10 +14,6 @@ class App extends React.Component {
         this.handleStoreChange = this.handleStoreChange.bind(this);
     }
 
-    handleStoreChange() {
-        this.setState(templatesStore.getState());
-    }
-
     componentDidMount() {
         templatesStore.addChangeListener(this.handleStoreChange);
 
@@ -28,9 +24,13 @@ class App extends React.Component {
         templatesStore.removeChangeListener(this.handleStoreChange);
     }
 
+    handleStoreChange() {
+        this.setState(templatesStore.getState());
+    }
+
     render() {
-        var templates = this.state.templates || [];
-        var form = this.state.selectedTemplate
+        const templates = this.state.templates || [];
+        const form = this.state.selectedTemplate
             ? <AttachmentForm template={this.state.selectedTemplate}/>
             : <div>Select a template from the list on the left</div>;
 
@@ -49,5 +49,5 @@ class App extends React.Component {
 
 React.render(
     <App />,
-    document.getElementById("app")
+    document.getElementById('app')
 );

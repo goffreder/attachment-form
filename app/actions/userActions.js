@@ -8,7 +8,7 @@ const baseURL = 'http://localhost:3000';
 
 export default {
     userLoadTemplates() {
-        var url = `${baseURL}/templates`;
+        const url = `${baseURL}/templates`;
 
         window.axios = axios;
 
@@ -27,12 +27,12 @@ export default {
     },
 
     userSaveObject(type, data) {
-        var url = `${baseURL}/${type}`;
+        const url = `${baseURL}/${type}`;
 
         axios.post(url, data).then((res) => {
-            console.log("then", res);
+            console.log('then', res);
         }).catch((res) => {
-            console.log("catch", res);
+            console.log('catch', res);
         });
     }
 };

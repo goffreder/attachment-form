@@ -4,17 +4,17 @@ import assign from 'react/lib/Object.assign';
 
 export default assign(new Dispatcher(), {
     handleServerAction(action) {
-        var payload = {
+        const payload = {
             source: PayloadSources.SERVER_ACTION,
-            action: action
+            action
         };
         this.dispatch(payload);
     },
 
     handleUserAction(action) {
-        var payload = {
+        const payload = {
             source: PayloadSources.USER_ACTION,
-            action: action
+            action
         };
         this.dispatch(payload);
     }

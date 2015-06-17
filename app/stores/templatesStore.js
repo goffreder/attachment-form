@@ -4,25 +4,25 @@ import { ServerActionTypes, UserActionTypes } from '../constants/constants';
 import assign from 'react/lib/Object.assign';
 
 const CHANGE_EVENT = 'CHANGE';
-var events = new EventEmitter();
+const events = new EventEmitter();
 
-var __state = {};
+let state = {};
 
-var updateState = (newState) => {
-    assign(__state, newState);
+const updateState = (newState) => {
+    assign(state, newState);
     events.emit(CHANGE_EVENT);
 };
 
-var replaceState = () => {
-    __state = newState;
-    events.emit(CHANGE_EVENT);
-};
+// const replaceState = (newState) => {
+//     state = newState;
+//     events.emit(CHANGE_EVENT);
+// };
 
-var clearState = () => {
-    replaceState({});
-};
+// const clearState = () => {
+//     replaceState({});
+// };
 
-var templatesStore = {
+const templatesStore = {
     addChangeListener(fn) {
         events.addListener(CHANGE_EVENT, fn);
     },
@@ -32,14 +32,14 @@ var templatesStore = {
     },
 
     getState() {
-        return __state;
+        return state;
     }
 };
 
 templatesStore.dispatchToken = appDispatcher.register((payload) => {
-    var { action } = payload;
+    const { action } = payload;
 
-    switch(action.type) {
+    switch (action.type) {
         case ServerActionTypes.SERVER_LOAD_TEMPLATES_SUCCESS:
             updateState({
                 templates: action.templates
@@ -48,7 +48,7 @@ templatesStore.dispatchToken = appDispatcher.register((payload) => {
 
         case UserActionTypes.USER_SELECTED_TEMPLATE:
             updateState({
-                selectedTemplate: __state.templates.filter((template) => {
+                selectedTemplate: state.templates.filter((template) => {
                     return template.name === action.templateId;
                 }).pop()
             });

@@ -1,5 +1,5 @@
 export default class DateField extends React.Component {
-    shouldComponentUpdate (nextProps) {
+    shouldComponentUpdate(nextProps) {
         return nextProps.name !== this.props.name && nextProps.label !== this.props.label;
     }
 
