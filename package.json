@@ -1,6 +1,6 @@
 {
-  "name": "react-app",
-  "description": "React App",
+  "name": "attachment-form",
+  "description": "Attachment Form",
   "version": "0.0.1",
   "main": "webpack.config.js",
   "author": "Emanuele Biancardi",
