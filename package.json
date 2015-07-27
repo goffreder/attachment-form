@@ -2,7 +2,7 @@
   "name": "attachment-form",
   "description": "Attachment Form",
   "version": "0.0.1",
-  "main": "__build__/build.js",
+  "main": "webpack.config.js",
   "author": "Emanuele Biancardi",
   "license": "MIT",
   "scripts": {

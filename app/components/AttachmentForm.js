@@ -10,6 +10,8 @@ import TimeField from './fields/TimeField';
 import CheckBoxField from './fields/CheckBoxField';
 import NumberField from './fields/NumberField';
 
+import TextInputField from './fields/TextInputField';
+
 export default class AttachmentForm extends React.Component {
     constructor(props) {
         super(props);
@@ -110,6 +112,16 @@ export default class AttachmentForm extends React.Component {
                         />
                     );
                     break;
+                case 'testtext':
+                    input = (
+                        <TextInputField
+                            key={field.name}
+                            name={field.name}
+                            label={field.label}
+                            testprop={field.testprop}
+                        />
+                    );
+                    break;
                 default :
                     break;
             }
@@ -135,8 +147,8 @@ export default class AttachmentForm extends React.Component {
 AttachmentForm.propTypes = {
     template: React.PropTypes.shape({
         fields: React.PropTypes.arrayOf(React.PropTypes.shape({
-            name: React.PropTypes.string.isRequired,
-            label: React.PropTypes.string.isRequired,
+            // name: React.PropTypes.string.isRequired,
+            // label: React.PropTypes.string.isRequired,
             type: React.PropTypes.oneOf([
                 'text',
                 'textarea',
@@ -144,7 +156,8 @@ AttachmentForm.propTypes = {
                 'time',
                 'checkbox',
                 'number',
-                'datetime'
+                'datetime',
+                'testtext'
             ]).isRequired
         })).isRequired,
         name: React.PropTypes.string.isRequired,

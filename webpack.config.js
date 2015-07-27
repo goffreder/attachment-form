@@ -19,7 +19,7 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             exclude: /node_modules[\/\\]/,
-            loader: 'babel-loader?optional[]=es7.decorators'
+            loader: 'babel-loader?stage=0'
         }, {
             test: /\.css$/,
             loader: "style!css"

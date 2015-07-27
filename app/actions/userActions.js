@@ -10,8 +10,6 @@ export default {
     userLoadTemplates() {
         const url = `${baseURL}/templates`;
 
-        window.axios = axios;
-
         axios.get(url).then((res) => {
             serverActions.serverLoadedTemplates(res.data);
         }).catch((res) => {

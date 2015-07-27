@@ -32,6 +32,17 @@
       ]
     },
     {
+      "name": "test",
+      "label": "Test",
+      "fields": [
+        {
+          "name": "test",
+          "label": "Test",
+          "type": "testtext"
+        }
+      ]
+    },
+    {
       "name": "match",
       "label": "Partita",
       "fields": [

@@ -47,4 +47,7 @@ class App extends React.Component {
     }
 }
 
-export default App;
+React.render(
+    <App />,
+    document.getElementById('app')
+);
